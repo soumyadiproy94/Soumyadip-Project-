@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumyadip Roy | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FFF4BF;
+            --pink: #FFBEFB;
+            --lavender: #DC95FF;
+            --purple: #8C56D4;
+            --deep-purple: #5a2f99;
+            --text-dark: #2d1b4e;
+            --text-light: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 244, 191, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(140, 86, 212, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--purple);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--purple);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--purple);
+            margin: 5px 0;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 5% 4rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--pink) 50%, var(--lavender) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: var(--purple);
+            border-radius: 50%;
+            opacity: 0.08;
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--deep-purple);
+            border-radius: 50%;
+            opacity: 0.06;
+            bottom: -150px;
+            left: -150px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--lavender);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--purple);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: var(--deep-purple);
+            letter-spacing: -1.5px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--deep-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            color: var(--text-dark);
+            opacity: 0.85;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--purple);
+            color: var(--text-light);
+            box-shadow: 0 10px 30px rgba(140, 86, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--deep-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(140, 86, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.6);
+            color: var(--purple);
+            border: 2px solid var(--purple);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--purple);
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: var(--lavender);
+            color: var(--text-light);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--deep-purple);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--text-light);
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, rgba(255, 244, 191, 0.4) 0%, rgba(255, 190, 251, 0.4) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 1px solid rgba(140, 86, 212, 0.15);
+            box-shadow: 0 20px 60px rgba(140, 86, 212, 0.1);
+        }
+
+        .about-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .about-card strong {
+            color: var(--purple);
+        }
+
+        /* Education Section */
+        .education {
+            background: var(--pink);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--purple);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            width: 50%;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--cream);
+            border: 4px solid var(--purple);
+            border-radius: 50%;
+            top: 0;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: var(--text-light);
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(140, 86, 212, 0.15);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.25rem;
+            color: var(--purple);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .timeline-status {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            background: var(--lavender);
+            color: var(--text-light);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--lavender);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .exp-card {
+            background: var(--text-light);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(90, 47, 153, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .exp-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .exp-card h3 {
+            font-size: 1.3rem;
+            color: var(--deep-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-card p {
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--cream);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--text-light);
+            padding: 1.5rem 1rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(140, 86, 212, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple);
+            box-shadow: 0 15px 35px rgba(140, 86, 212, 0.2);
+        }
+
+        .skill-icon {
+            width: 45px;
+            height: 45px;
+            margin: 0 auto 0.75rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--pink) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .skill-item h4 {
+            font-size: 1rem;
+            color: var(--deep-purple);
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--deep-purple) 100%);
+            color: var(--text-light);
+        }
+
+        .contact .section-title,
+        .contact .section-desc {
+            color: var(--text-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.75rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            word-break: break-all;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-purple);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 244, 191, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 3rem;
+                gap: 2.5rem;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(140, 86, 212, 0.15);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                left: 0;
+                padding-left: 50px;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 10px;
+                right: auto;
+            }
+
+            .about-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">Soumyadip</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">Mathematics Student & Creative Learner</span>
+            <h1>Hi, I'm <span>Soumyadip Roy</span></h1>
+            <p class="hero-subtitle">BSc Mathematics student at Surya Sen Mahavidyalaya, exploring the world of web design, video editing, and creative technology.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="#about" class="btn btn-secondary">Know More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Who I Am</h2>
+                <p class="section-desc">A passionate learner blending analytical thinking with creative expression.</p>
+            </div>
+            <div class="about-card reveal">
+                <p>
+                    I am <strong>Soumyadip Roy</strong>, a dedicated student currently pursuing my <strong>BSc in Mathematics</strong> at <strong>Surya Sen Mahavidyalaya</strong>. Beyond academics, I am deeply interested in creative and digital fields — from <strong>website designing</strong> and <strong>graphic designing</strong> to <strong>video editing</strong> and <strong>photography</strong>. I enjoy learning new tools, leading teams, teaching concepts to others, and managing my time effectively to balance multiple interests.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="education" id="education">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Education</span>
+                <h2 class="section-title">My Academic Journey</h2>
+                <p class="section-desc">The path that shaped my curiosity and love for learning.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Class 10th</h3>
+                        <p>Dewanganj High School, Haldibari</p>
+                        <span class="timeline-status">Completed</span>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Class 12th</h3>
+                        <p>Haldibari High School, Haldibari</p>
+                        <span class="timeline-status">Completed</span>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>BSc in Mathematics</h3>
+                        <p>Surya Sen Mahavidyalaya</p>
+                        <span class="timeline-status">Currently Pursuing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Experience</span>
+                <h2 class="section-title">What I'm Working On</h2>
+                <p class="section-desc">Hands-on learning through real-world creative experiences.</p>
+            </div>
+            <div class="experience-grid">
+                <div class="exp-card reveal">
+                    <div class="exp-icon">🌐</div>
+                    <h3>Website Designing</h3>
+                    <p>Gaining practical experience in website designing with generative AI at Testube Learning.</p>
+                </div>
+                <div class="exp-card reveal">
+                    <div class="exp-icon">🎬</div>
+                    <h3>Video Editing</h3>
+                    <p>Experienced in video editing, bringing stories to life through visuals and motion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Skills</span>
+                <h2 class="section-title">My Skill Set</h2>
+                <p class="section-desc">A mix of leadership, creativity, and technical abilities.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item reveal">
+                    <div class="skill-icon">🎯</div>
+                    <h4>Leadership</h4>
+                </div>
+                <div class="skill-item reveal">
+                    <div class="skill-icon">📚</div>
+                    <h4>Teaching</h4>
+                </div>
+                <div class="skill-item reveal">
+                    <div class="skill-icon">🎥</div>
+                    <h4>Video Editing</h4>
+                </div>
+                <div class="skill-item reveal">
+                    <div class="skill-icon">🎨</div>
+                    <h4>Graphic Designing</h4>
+                </div>
+                <div class="skill-item reveal">
+                    <div class="skill-icon">⏰</div>
+                    <h4>Time Management</h4>
+                </div>
+                <div class="skill-item reveal">
+                    <div class="skill-icon">📷</div>
+                    <h4>Photography</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" style="background: rgba(255,255,255,0.2);">Contact</span>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-desc">Feel free to reach out for collaborations, opportunities, or just a friendly chat.</p>
+            </div>
+            <div class="contact-grid">
+                <a href="mailto:soumyadiproy1707@gmail.com" class="contact-card reveal">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>soumyadiproy1707@gmail.com</p>
+                </a>
+                <a href="https://share.google/b6eHV7PfvfBhsrEzf" target="_blank" rel="noopener noreferrer" class="contact-card reveal">
+                    <div class="contact-icon">💻</div>
+                    <h3>GitHub</h3>
+                    <p>Visit my GitHub profile</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Soumyadip Roy. Built with passion and creativity.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            revealElements.forEach((element) => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+    </script>
+</body>
+</html>
